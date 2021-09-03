@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+
+final ButtonStyle outlineButtonStyle = OutlinedButton.styleFrom(
+  primary: Colors.black87,
+  minimumSize: Size(88, 36),
+  padding: EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2)),
+  ),
+).copyWith(
+  side: MaterialStateProperty.resolveWith<BorderSide>(
+        (Set<MaterialState> states) {
+      if (states.contains(MaterialState.pressed))
+        return BorderSide(
+          color: Colors.green,
+          width: 1,
+        );
+      // Defer to the widget's default.
+      return BorderSide(
+       // color: Colors.green,
+        width: 1,
+      );
+    },
+  ),
+);
+
+final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+  primary: Colors.black87,
+  minimumSize: Size(88, 36),
+  padding: EdgeInsets.symmetric(horizontal: 16.0),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2.0)),
+  ),
+);
+
+final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+  onPrimary: Colors.black87,
+  primary: Colors.grey[300],
+  minimumSize: Size(88, 36),
+  padding: EdgeInsets.symmetric(horizontal: 16),
+  shape: const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2)),
+  ),
+);
+
+void gShowSnackBar(BuildContext context,String txt){
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(txt)));
+
+}
