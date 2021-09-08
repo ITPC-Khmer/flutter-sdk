@@ -14,6 +14,11 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  TextEditingController cUserName = TextEditingController();
+  TextEditingController cPhone = TextEditingController();
+  TextEditingController cPassword = TextEditingController();
+  
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -71,9 +76,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        gEntryField("Username"),
-        gEntryField("Email id"),
-        gEntryField("Password", isPassword: true),
+        gInputText(controller: cUserName,placeholder: "Username"),
+        gInputText(controller: cPhone,placeholder: "Phone"),
+        gInputText(controller: cPassword,placeholder: "Password",)
       ],
     );
   }
