@@ -1,8 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:cloudnet/controllter/base_controller.dart';
 import 'package:cloudnet/helper/base_client.dart';
+import 'package:globeso/helper/GlobalUrl.dart';
+import 'package:globeso/model/user_model.dart';
 import 'package:image_picker/image_picker.dart';
 
-class UserController with BaseController{
+class UserController with BaseController,ChangeNotifier{
+  late UserModel? user = new UserModel();
+
+  Future<dynamic> getUser(String userId) async {
+    await  BaseClient().post(GlobalUrl.taxiUrl(), 'm-get-user',{"user_id": userId})
+          .catchError(handleError)
+          .then((data){
+              print("object ${data['data']}");
+              user = UserModel.fromJson(data['data']);
+              print(user!.toJson());
+             notifyListeners();
+          }
+         );
+  }
+  
   void getData(){
     BaseClient().get('https://burmaso.com/', 'user/85')
         .catchError(handleError).then((x){
@@ -33,7 +50,6 @@ class UserController with BaseController{
     
     
   }
-  
   
   void uploadMultiImage(List<XFile>? images) async{
     var data = {

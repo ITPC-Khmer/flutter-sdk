@@ -1,9 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:cloudnet/controllter/user_controller.dart';
-import 'package:cloudnet/helper/base_client.dart';
-import 'package:cloudnet/view/user/welcomePage.dart';
 import 'package:cloudnet/view/widget/ImageFromGalleryEx.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -95,7 +92,7 @@ class _IntroPageState extends State<IntroPage>  {
                       style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      UserController().uploadMultiImage(images);
+                      //UserController().uploadMultiImage(images);
                     },
                   ),
                 ],
