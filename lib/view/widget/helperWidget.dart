@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cloudnet/view/widget/modal_bottom_sheet.dart' as m;
 import 'package:cloudnet/view/widget/ModalWithScroll.dart';
 
+typedef ValueSelectedChanged<int,T> = void Function(int index,T value);
+
 Widget gInputText({
   required String placeholder,
   bool isRequire = false,
@@ -36,7 +38,6 @@ Widget gInputText({
   );
 }
 
-typedef ValueSelectedChanged<int,T> = void Function(int index,T value);
 Widget gInputSelect<T>({
   required BuildContext context,
   required String placeholder,
@@ -54,7 +55,7 @@ Widget gInputSelect<T>({
   List<ListModel<T>> l = <ListModel<T>>[];
   gList.asMap().forEach((i,e) {
     l.add(ListModel<T>(key: e.key, title: e.title,data: e.data,onSelect: (d){
-      onSelect?.call(i,d);
+      onSelect.call(i,d);
       if(controller != null)
         controller.text = e.title;
       Navigator.of(context).pop();
