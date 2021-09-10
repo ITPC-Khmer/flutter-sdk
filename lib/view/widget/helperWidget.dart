@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudnet/view/widget/custom_form.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnet/view/widget/gColor.dart';
@@ -6,6 +7,18 @@ import 'package:cloudnet/view/widget/modal_bottom_sheet.dart' as m;
 import 'package:cloudnet/view/widget/ModalWithScroll.dart';
 
 typedef ValueSelectedChanged<int,T> = void Function(int index,T value);
+
+Widget gNetworkImage(
+    {required String imageUrl,  double? width, double? height, BoxFit fit = BoxFit.cover}) {
+  return CachedNetworkImage(
+    imageUrl: imageUrl,
+    placeholder: (context, url) => Center(child: Container(width: 30,height: 30,child: CircularProgressIndicator())),
+    errorWidget: (context, url, error) => Icon(Icons.error),
+    fit: fit,
+    width: width,
+    height: height,
+  );
+}
 
 Widget gInputText({
   required String placeholder,
