@@ -1,25 +1,89 @@
 import 'package:flutter/material.dart';
+Widget myTextField(
+    {TextEditingController? controller,
+    String? labelText,
+    String? hintText,
+    String helperText = '',
+    TextInputType? keyboardType,
+    bool? readOnly = false,
+    bool numberOnly = false,
+    FormFieldValidator<String>? validator,
+    Function(String)? onChanged,
+    GestureTapCallback? onTap,
+    double cursorWidth = 2.0,
+    bool obscureText = false,
+    bool autocorrect = true,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    bool autofocus = false,
+    int? maxLines = 1,
+    int? minLines = 1,
+    bool? enabled,
+    FocusNode? focusNode,
+    TextInputAction? textInputAction,
+    InputDecoration? decoration = const InputDecoration(),
+    Widget? suffixIcon,
+    double? paddingVertical,
+    bool textArea = false}) {
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: paddingVertical ?? 10.0),
+    child: TextFormField(
+        maxLines: maxLines! > 1
+            ? maxLines
+            : textArea == true
+                ? 10
+                : 1,
+        minLines: minLines! > 1
+            ? minLines
+            : textArea == true
+                ? 3
+                : 1,
+        controller: controller,
+        keyboardType: keyboardType != null
+            ? keyboardType
+            : (numberOnly ? TextInputType.number : TextInputType.text),
+        readOnly: readOnly!,
+        onChanged: onChanged,
+        enabled: enabled,
+        validator: validator,
+        autocorrect: autocorrect,
+        focusNode: focusNode,
+        onTap: onTap,
+        cursorWidth: 2,
+        obscureText: obscureText,
+        style: style,
+        autofocus: autofocus,
+        strutStyle: strutStyle,
+        decoration: decoration,
+        textInputAction: textInputAction),
+  );
+}
 
 class MyInputText extends StatefulWidget {
-  BorderRadius? cornerRadius;
-  double? width, height, wordSpacing;
-  Color? backgroundColor, accentColor, textColor;
-  String? placeholder, fontFamily;
-  Icon? prefixIcon, suffixIcon;
-  TextInputType? inputType;
-  EdgeInsets? margin;
-  Duration? duration;
-  VoidCallback? onClickSuffix;
-  TextBaseline? textBaseline;
-  FontStyle? fontStyle;
-  FontWeight? fontWeight;
-  bool? autofocus, autocorrect, enabled, obscureText, isShadow, isRequire,readOnly;
-  FocusNode? focusNode;
-  int? maxLength, minLines, maxLines;
-  ValueChanged<String>? onChanged, onSubmitted;
-  GestureTapCallback? onTap;
-  TextEditingController? controller;
-  
+  final BorderRadius? cornerRadius;
+  final double? width, height, wordSpacing;
+  final Color? backgroundColor, accentColor, textColor;
+  final String? placeholder, fontFamily;
+  final Icon? prefixIcon, suffixIcon;
+  final TextInputType? inputType;
+  final EdgeInsets? margin;
+  final Duration? duration;
+  final VoidCallback? onClickSuffix;
+  final TextBaseline? textBaseline;
+  final FontStyle? fontStyle;
+  final FontWeight? fontWeight;
+  final bool? autofocus,
+      autocorrect,
+      enabled,
+      obscureText,
+      isShadow,
+      isRequire,
+      readOnly;
+  final FocusNode? focusNode;
+  final int? maxLength, minLines, maxLines;
+  final ValueChanged<String>? onChanged, onSubmitted;
+  final GestureTapCallback? onTap;
+  final TextEditingController? controller;
 
   MyInputText(
       {Key? key,
@@ -176,9 +240,8 @@ class _MyInputTextState extends State<MyInputText> {
                     Expanded(
                       flex: 5,
                       child: Container(
-                        margin: EdgeInsets.only(
-                            right: widget.suffixIcon != null ? 50 : 10, top: 3),
-                        child: TextField(
+                        margin: EdgeInsets.only(right: widget.suffixIcon != null ? 50 : 10, top: 3),
+                        child: myTextField(
                           controller: widget.controller,
                           readOnly: widget.readOnly!,
                           cursorWidth: 2,
@@ -198,7 +261,6 @@ class _MyInputTextState extends State<MyInputText> {
                           autocorrect: widget.autocorrect!,
                           focusNode: widget.focusNode,
                           enabled: widget.enabled,
-                          maxLength: widget.maxLength,
                           maxLines: widget.maxLines,
                           minLines: widget.minLines,
                           onChanged: widget.onChanged,
@@ -210,12 +272,7 @@ class _MyInputTextState extends State<MyInputText> {
                               widget.onTap!();
                             }
                           },
-                          onSubmitted: (t) {
-                            setState(() {
-                              isFocus = false;
-                            });
-                            widget.onSubmitted!(t);
-                          },
+
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(color: Colors.grey.shade300),
