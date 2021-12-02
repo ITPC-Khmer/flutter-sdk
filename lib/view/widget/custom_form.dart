@@ -215,10 +215,7 @@ class _MyInputTextState extends State<MyInputText> {
                   child: Container(
                     margin: EdgeInsets.only(right: 5),
                     alignment: Alignment.centerRight,
-                    child: Icon(
-                      widget.suffixIcon!.icon,
-                      color: widget.textColor,
-                    ),
+                    child: widget.suffixIcon!,
                   ),
                 )
               ],
@@ -229,12 +226,7 @@ class _MyInputTextState extends State<MyInputText> {
                     if (widget.prefixIcon != null) ...[
                       Expanded(
                         flex: 1,
-                        child: Icon(
-                          widget.prefixIcon!.icon,
-                          color: isFocus
-                              ? widget.backgroundColor
-                              : widget.accentColor,
-                        ),
+                        child: widget.prefixIcon!,
                       ),
                     ] else ...[
                       SizedBox(
