@@ -150,7 +150,7 @@ class _MyInputTextState extends State<MyInputText> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-            padding: EdgeInsets.only(left: 15.0),
+            // padding: EdgeInsets.only(left: 15.0),
             child: widget.isRequire!
                 ? RichText(
                     text: TextSpan(
