@@ -173,12 +173,12 @@ class _MyInputTextState extends State<MyInputText> {
           margin: widget.margin,
           alignment: Alignment.centerRight,
           decoration: BoxDecoration(
-              boxShadow: widget.isShadow!
-                  ? [
-                      BoxShadow(
-                          color: Colors.grey, blurRadius: 2, spreadRadius: 1)
-                    ]
-                  : [BoxShadow(spreadRadius: 0, blurRadius: 0)],
+              // boxShadow: widget.isShadow!
+              //     ? [
+              //         BoxShadow(
+              //             color: Colors.grey, blurRadius: 2, spreadRadius: 1)
+              //       ]
+              //     : [BoxShadow(spreadRadius: 0, blurRadius: 0)],
               borderRadius: widget.cornerRadius,
               color: widget.suffixIcon == null
                   ? isFocus
