@@ -32,6 +32,7 @@ Widget gInputText({
   int? maxLines = 1,
   int? minLines = 1,
   bool numberOnly = false,
+  Widget? suffixIcon,
    TextInputType? keyboardType,
   ValueChanged<String>? onSubmitted}
     ){
@@ -46,7 +47,7 @@ Widget gInputText({
     keyboardType:keyboardType,
     height: 50,
     duration: Duration(milliseconds: 300),
-    suffixIcon: Icon(Icons.close),
+    suffixIcon: (suffixIcon ?? Icon(Icons.close)),
     onClickSuffix: onClear != null? onClear: (){
       if(controller != null)
         controller.clear();

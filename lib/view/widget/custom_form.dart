@@ -64,7 +64,7 @@ class MyInputText extends StatefulWidget {
   final double? width, height, wordSpacing;
   final Color? backgroundColor, accentColor, textColor;
   final String? placeholder, fontFamily;
-  final Icon? prefixIcon, suffixIcon;
+  final Widget? prefixIcon, suffixIcon;
   final EdgeInsets? margin;
   final Duration? duration;
   final VoidCallback? onClickSuffix;
