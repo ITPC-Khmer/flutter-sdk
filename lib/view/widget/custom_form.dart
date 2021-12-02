@@ -72,6 +72,8 @@ class MyInputText extends StatefulWidget {
   final TextBaseline? textBaseline;
   final FontStyle? fontStyle;
   final FontWeight? fontWeight;
+
+  final FormFieldValidator<String>? validator;
   final bool? autofocus,
       autocorrect,
       enabled,
@@ -93,6 +95,7 @@ class MyInputText extends StatefulWidget {
       this.prefixIcon,
       required this.inputType,
       this.controller,
+      this.validator,
       this.isRequire = false,
       this.suffixIcon,
       this.duration = const Duration(milliseconds: 500),
@@ -247,6 +250,7 @@ class _MyInputTextState extends State<MyInputText> {
                           cursorWidth: 2,
                           obscureText: widget.obscureText!,
                           keyboardType: widget.inputType,
+                          validator: widget.validator,
                           style: TextStyle(
                             fontFamily: widget.fontFamily,
                             fontStyle: widget.fontStyle,
