@@ -28,6 +28,7 @@ Widget gInputText({
   GestureTapCallback? onTap,
   ValueChanged<String>? onChanged,
   VoidCallback? onClear,
+  FormFieldValidator<String>? validator,
   ValueChanged<String>? onSubmitted}
     ){
   return  MyInputText(
@@ -35,6 +36,7 @@ Widget gInputText({
     width: double.maxFinite,
     isRequire:isRequire,
     readOnly:readOnly,
+    validator:validator,
     height: 50,
     duration: Duration(milliseconds: 300),
     inputType: TextInputType.text,
