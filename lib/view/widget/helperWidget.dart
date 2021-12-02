@@ -29,6 +29,9 @@ Widget gInputText({
   ValueChanged<String>? onChanged,
   VoidCallback? onClear,
   FormFieldValidator<String>? validator,
+  int? maxLines = 1,
+  int? minLines = 1,
+  bool numberOnly = false,
   ValueChanged<String>? onSubmitted}
     ){
   return  MyInputText(
@@ -37,6 +40,8 @@ Widget gInputText({
     isRequire:isRequire,
     readOnly:readOnly,
     validator:validator,
+    minLines: minLines,
+    maxLines: maxLines,
     height: 50,
     duration: Duration(milliseconds: 300),
     inputType: TextInputType.text,
