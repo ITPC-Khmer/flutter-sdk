@@ -65,13 +65,14 @@ class MyInputText extends StatefulWidget {
   final Color? backgroundColor, accentColor, textColor;
   final String? placeholder, fontFamily;
   final Icon? prefixIcon, suffixIcon;
-  final TextInputType? inputType;
   final EdgeInsets? margin;
   final Duration? duration;
   final VoidCallback? onClickSuffix;
   final TextBaseline? textBaseline;
   final FontStyle? fontStyle;
   final FontWeight? fontWeight;
+
+  final TextInputType? keyboardType;
 
   final FormFieldValidator<String>? validator;
   final bool? autofocus,
@@ -93,7 +94,7 @@ class MyInputText extends StatefulWidget {
       required this.height,
       this.readOnly = false,
       this.prefixIcon,
-      required this.inputType,
+      this.keyboardType,
       this.controller,
       this.validator,
       this.isRequire = false,
@@ -249,7 +250,7 @@ class _MyInputTextState extends State<MyInputText> {
                           readOnly: widget.readOnly!,
                           cursorWidth: 2,
                           obscureText: widget.obscureText!,
-                          keyboardType: widget.inputType,
+                          keyboardType: widget.keyboardType,
                           validator: widget.validator,
                           style: TextStyle(
                             fontFamily: widget.fontFamily,
