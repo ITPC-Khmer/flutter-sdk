@@ -7,6 +7,17 @@ import 'package:cloudnet/view/widget/modal_bottom_sheet.dart' as m;
 import 'package:cloudnet/view/widget/ModalWithScroll.dart';
 
 typedef ValueSelectedChanged<int,T> = void Function(int index,T value);
+typedef ValueSelectedMultipleChanged<int,T> = void Function(int index,List<T> value);
+
+// extension ListExtension<E> on List<E> {
+//   void addAllUnique(Iterable<E> iterable) {
+//     for (var element in iterable) {
+//       if (!contains(element)) {
+//         add(element);
+//       }
+//     }
+//   }
+// }
 
 Widget gNetworkImage(
     {required String imageUrl,  double? width, double? height, BoxFit fit = BoxFit.cover}) {
@@ -60,6 +71,7 @@ Widget gInputText({
   );
 }
 
+
 Widget gInputSelect<T>({
   required BuildContext context,
   required String placeholder,
@@ -69,20 +81,40 @@ Widget gInputSelect<T>({
   ValueChanged<String>? onChanged,
   ValueChanged<String>? onSubmitted,
   required VoidCallback onClear,
-  required ValueSelectedChanged<int,T?> onSelect,
+  ValueSelectedChanged<int,T?>? onSelect,
+  ValueSelectedMultipleChanged<int,T?>? onMultipleSelect,
   required List<ListModel<T>> gList
 }
     ){
-
+  List<T?> lT = [];
+  List<String> lTxt = [];
   List<ListModel<T>> l = <ListModel<T>>[];
   gList.asMap().forEach((i,e) {
     l.add(ListModel<T>(key: e.key, title: e.title,data: e.data,onSelect: (d){
-      onSelect.call(i,d);
-      if(controller != null)
-        controller.text = e.title;
-      Navigator.of(context).pop();
+      if(onSelect != null) {
+        onSelect.call(i, d);
+        if (controller != null)
+          controller.text = e.title;
+        Navigator.of(context).pop();
+      }else if(onMultipleSelect != null){
+        if(lT.isEmpty){
+          lT.add(d);
+          lTxt.add(e.title);
+        }else {
+          lT.forEach((ei) {
+            if (ei != d) {
+              lT.add(d);
+              lTxt.add(e.title);
+            }
+          });
+        }
+        onMultipleSelect.call(i,lT);
+        if (controller != null)
+          controller.text = lTxt.join(' , ');
+      }
     }));
   });
+  
   return  gInputText(
       placeholder:placeholder,
       isRequire:isRequire ,
