@@ -162,7 +162,7 @@ Widget gSubmitButton({required String title,double? width,GestureTapCallback? on
     onTap: onTap,
     child: Container(
       // width: MediaQuery.of(context).size.width,
-      height: height??80,
+      height: height??60,
       width: width,
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
