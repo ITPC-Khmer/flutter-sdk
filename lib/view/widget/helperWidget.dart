@@ -157,12 +157,12 @@ Widget gGlobeSOText() {
   );
 }
 
-Widget gSubmitButton({required String title,double? width,GestureTapCallback? onTap}) {
+Widget gSubmitButton({required String title,double? width,GestureTapCallback? onTap,double? height}) {
   return InkWell(
     onTap: onTap,
     child: Container(
       // width: MediaQuery.of(context).size.width,
-      height: 30,
+      height: height??80,
       width: width,
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
