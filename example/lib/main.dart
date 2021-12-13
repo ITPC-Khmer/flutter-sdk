@@ -1,3 +1,5 @@
+import 'package:cloudnet/view/widget/ModalWithScroll.dart';
+import 'package:cloudnet/view/widget/checkbox_list.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -16,10 +18,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
 
+  List<ListModel<String>> listData = [];
   @override
   void initState() {
+   // initPlatformState();
+    
+    listData.add(ListModel<String>(key: 'a',title: 'A',data: 'AA'));
+    listData.add(ListModel<String>(key: 'b',title: 'B',data: 'BB'));
+    listData.add(ListModel<String>(key: 'c',title: 'C',data: 'CC'));
+    listData.add(ListModel<String>(key: 'd',title: 'D',data: 'DD'));
     super.initState();
-    initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -44,6 +52,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,9 +60,20 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
+        body:  CheckboxList<String>(listData: listData,onMultipleSelect: (d){
+          debugPrint('DDDDDDD: ${d.map((e) => e.data).join(' , ')}'); 
+        },)
+        
+        // ListView(
+        //   children: [
+        //     // Center(
+        //     //   child: Text('Running on: $_platformVersion\n'),
+        //     // ),
+        //     CheckboxList<String>(listData: listData,onMultipleSelect: (d){
+        //       debugPrint('DDDDDDD: ${d.join(' , ')}');
+        //     },)
+        //   ],
+        // ),
       ),
     );
   }

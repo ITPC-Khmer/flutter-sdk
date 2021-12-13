@@ -7,7 +7,6 @@ import 'package:cloudnet/view/widget/modal_bottom_sheet.dart' as m;
 import 'package:cloudnet/view/widget/ModalWithScroll.dart';
 
 typedef ValueSelectedChanged<int,T> = void Function(int index,T value);
-typedef ValueSelectedMultipleChanged<int,T> = void Function(int index,List<T> value);
 
 // extension ListExtension<E> on List<E> {
 //   void addAllUnique(Iterable<E> iterable) {
@@ -82,12 +81,10 @@ Widget gInputSelect<T>({
   ValueChanged<String>? onSubmitted,
   required VoidCallback onClear,
   ValueSelectedChanged<int,T?>? onSelect,
-  ValueSelectedMultipleChanged<int,T?>? onMultipleSelect,
   required List<ListModel<T>> gList
 }
     ){
-  List<T?> lT = [];
-  List<String> lTxt = [];
+  
   List<ListModel<T>> l = <ListModel<T>>[];
   gList.asMap().forEach((i,e) {
     l.add(ListModel<T>(key: e.key, title: e.title,data: e.data,onSelect: (d){
@@ -96,21 +93,6 @@ Widget gInputSelect<T>({
         if (controller != null)
           controller.text = e.title;
         Navigator.of(context).pop();
-      }else if(onMultipleSelect != null){
-        if(lT.isEmpty){
-          lT.add(d);
-          lTxt.add(e.title);
-        }else {
-          lT.forEach((ei) {
-            if (ei != d) {
-              lT.add(d);
-              lTxt.add(e.title);
-            }
-          });
-        }
-        onMultipleSelect.call(i,lT);
-        if (controller != null)
-          controller.text = lTxt.join(' , ');
       }
     }));
   });
