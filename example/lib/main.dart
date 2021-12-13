@@ -19,6 +19,7 @@ class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
 
   List<ListModel<String>> listData = [];
+  List<ListModel<String>> valuesSelect = [];
   @override
   void initState() {
    // initPlatformState();
@@ -27,6 +28,8 @@ class _MyAppState extends State<MyApp> {
     listData.add(ListModel<String>(key: 'b',title: 'B',data: 'BB'));
     listData.add(ListModel<String>(key: 'c',title: 'C',data: 'CC'));
     listData.add(ListModel<String>(key: 'd',title: 'D',data: 'DD'));
+
+    valuesSelect.add(listData[2]);
     super.initState();
   }
 
@@ -60,20 +63,28 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body:  CheckboxList<String>(listData: listData,onMultipleSelect: (d){
-          debugPrint('DDDDDDD: ${d.map((e) => e.data).join(' , ')}'); 
-        },)
+        body: 
+        // CheckboxList<String>(listData: listData,onMultipleSelect: (d){
+        //   debugPrint('DDDDDDD: ${d.map((e) => e.data).join(' , ')}'); 
+        // },)
         
-        // ListView(
-        //   children: [
-        //     // Center(
-        //     //   child: Text('Running on: $_platformVersion\n'),
-        //     // ),
-        //     CheckboxList<String>(listData: listData,onMultipleSelect: (d){
-        //       debugPrint('DDDDDDD: ${d.join(' , ')}');
-        //     },)
-        //   ],
-        // ),
+        ListView(
+          children: [
+            // Center(
+            //   child: Text('Running on: $_platformVersion\n'),
+            // ),
+            Text("Test"),
+            Text("Test"),
+            CheckboxList<String>(listData: listData,valuesSelect: valuesSelect,onMultipleSelect: (d){
+              debugPrint('DDDDDDD: ${d.map((e) => e.data).join(' , ')}');
+              valuesSelect = d;
+              debugPrint('XXXXXXX: ${valuesSelect.map((e) => e.data).join(' , ')}');
+            },),
+
+            Text("Test"),
+            Text("Test"),
+          ],
+        ),
       ),
     );
   }
