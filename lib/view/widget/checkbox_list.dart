@@ -5,8 +5,8 @@ import 'package:rxdart/subjects.dart';
 
 typedef ValueSelectedMultipleChanged<T> = void Function(List<ListModel<T>> value);
 
-class CheckboxList<T> extends StatelessWidget {
-   CheckboxList({Key? key, required this.listData, this.onMultipleSelect, required this.valuesSelect}) : super(key: key);
+class CheckboxListSelect<T> extends StatelessWidget {
+  CheckboxListSelect({Key? key, required this.listData, this.onMultipleSelect, required this.valuesSelect}) : super(key: key);
   final ValueSelectedMultipleChanged<T>? onMultipleSelect;
   final List<ListModel<T>> listData;
   final List<ListModel<T>> valuesSelect;

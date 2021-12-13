@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
             // ),
             Text("Test"),
             Text("Test"),
-            CheckboxList<String>(listData: listData,valuesSelect: valuesSelect,onMultipleSelect: (d){
+            CheckboxListSelect<String>(listData: listData,valuesSelect: valuesSelect,onMultipleSelect: (d){
               debugPrint('DDDDDDD: ${d.map((e) => e.data).join(' , ')}');
               valuesSelect = d;
               debugPrint('XXXXXXX: ${valuesSelect.map((e) => e.data).join(' , ')}');
