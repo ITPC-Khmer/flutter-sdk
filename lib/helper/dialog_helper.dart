@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:cloudnet/view/widget/gColor.dart';
 
 class DialogHelper{
-
+  late BuildContext context;
   void showDialog({required String title,String description = "Something went wrong"})  {
      showGeneralDialog(
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: Duration(milliseconds: 700),
-      context: Get.context as BuildContext,
+      context: context,
       pageBuilder: (_, __, ___) {
         return Align(
           alignment: Alignment.bottomCenter,
@@ -34,7 +34,7 @@ class DialogHelper{
                             maxLines: 2,)),
                           ElevatedButton(
                               onPressed:(){
-                                if(Get.isDialogOpen == true)Get.back();
+                                // if(Get.isDialogOpen == true)Get.back();
                               },
                               child: Text("OK")
                           )

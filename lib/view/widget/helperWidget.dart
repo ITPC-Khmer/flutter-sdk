@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloudnet/view/widget/checkbox_list.dart';
 import 'package:cloudnet/view/widget/custom_form.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnet/view/widget/gColor.dart';
@@ -111,6 +112,51 @@ Widget gInputSelect<T>({
         if(readOnly == false){
           await m.gShowModalBottomSheet(context: context,expand: false, widget: ModalWithScroll<T>(
               gList:  l
+          ));
+        }
+      },
+      onChanged:onSubmitted,
+      onSubmitted:onSubmitted
+  );
+}
+
+Widget gInputMultipleSelect<T>({
+  required BuildContext context,
+  required String placeholder,
+  bool isRequire = false,
+  bool readOnly = false,
+  TextEditingController? controller,
+  ValueChanged<String>? onChanged,
+  ValueChanged<String>? onSubmitted,
+  required VoidCallback onClear,
+  ValueSelectedMultipleChanged<T>? onMultipleSelect,
+  required List<ListModel<T>> gList,
+  List<ListModel<T>>? valuesSelect 
+}
+    ){
+  
+  // List<ListModel<T>> l = <ListModel<T>>[];
+  // gList.asMap().forEach((i,e) {
+  //   l.add(ListModel<T>(key: e.key, title: e.title,data: e.data));
+  // });
+  
+  return  gInputText(
+      placeholder:placeholder,
+      isRequire:isRequire ,
+      readOnly:true ,
+      controller:controller,
+      onClear: (){
+        onClear();
+        if(controller != null)
+          controller.clear();
+      },
+      onTap:() async{
+        if(readOnly == false){
+          await m.gShowModalBottomSheet(context: context,expand: false, widget: Container(
+            height: 300,
+            child: CheckboxListSelect<T>(
+               listData: gList,valuesSelect: valuesSelect??[],onMultipleSelect: onMultipleSelect,
+            ),
           ));
         }
       },

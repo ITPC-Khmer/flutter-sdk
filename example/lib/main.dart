@@ -1,5 +1,6 @@
 import 'package:cloudnet/view/widget/ModalWithScroll.dart';
 import 'package:cloudnet/view/widget/checkbox_list.dart';
+import 'package:cloudnet/view/widget/helperWidget.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -80,6 +81,11 @@ class _MyAppState extends State<MyApp> {
               valuesSelect = d;
               debugPrint('XXXXXXX: ${valuesSelect.map((e) => e.data).join(' , ')}');
             },),
+            gInputMultipleSelect<String>(context: context, placeholder: "placeholder", onClear: (){}, gList: listData,onMultipleSelect: (d){
+              debugPrint('DDDDDDD: ${d.map((e) => e.data).join(' , ')}');
+              valuesSelect = d;
+              debugPrint('XXXXXXX: ${valuesSelect.map((e) => e.data).join(' , ')}');
+            }),
 
             Text("Test"),
             Text("Test"),
