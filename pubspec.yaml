@@ -1,6 +1,6 @@
 name: cloudnet
 description: A new Flutter project.
-version: 0.0.22
+version: 0.0.23
 homepage:
 
 environment:
@@ -8,19 +8,14 @@ environment:
   flutter: ">=1.20.0"
 
 dependencies:
+  cached_network_image: ^3.2.1
   flutter:
     sdk: flutter
-  provider: ^6.0.1
-  sqflite: ^2.0.0+4
-  google_fonts: ^2.1.0
-  cupertino_icons: ^1.0.2
-  http: ^0.13.3
-#  get: ^4.3.8
-  image_picker: ^0.8.4+4
-  modal_bottom_sheet: ^2.0.0
-  rxdart: ^0.27.2
-  cached_network_image: ^3.1.0
-  carousel_slider: ^4.0.0
+  google_fonts: ^3.0.1
+  image_picker: ^0.8.5+3
+  modal_bottom_sheet: ^2.1.0
+  rxdart: ^0.27.5
+
 
 dev_dependencies:
   flutter_test:
