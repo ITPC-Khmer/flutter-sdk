@@ -6,7 +6,7 @@ import 'package:cloudnet/helper/error.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart'; 
 class BaseClient{
-  static const TIME_OUT_DURATION = 20;
+  static const TIME_OUT_DURATION = 60;
   //GET
   Future<dynamic> get(String baseUrl,String api) async {
     var uri = Uri.parse(baseUrl + api);
